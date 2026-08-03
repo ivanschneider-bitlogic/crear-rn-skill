@@ -1,0 +1,7 @@
+{
+  "name": "crear-rn",
+  "description": "Genera Release Notes siguiendo una plantilla estándar de equipo, autocompletando datos desde Linear, AWS ECS, git y Google Drive, y crea el documento final directamente como Google Doc en la carpeta de Drive correspondiente.",
+  "author": {
+    "name": "schneider"
+  }
+}
