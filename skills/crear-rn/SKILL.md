@@ -7,7 +7,7 @@ description: >
   resueltos/conocidos, versionado) y autocompleta lo que puede obtener de Linear
   (milestones y bugs), Google Drive (doc de arquitectura y RN previo), AWS ECS
   (última versión desplegada en QA) y repos de configuración locales (variables de
-  entorno nuevas en los últimos 40 días). Crea el documento final directamente como
+  entorno nuevas en las últimas 6 semanas). Crea el documento final directamente como
   Google Doc en la carpeta de Drive del release correspondiente. La primera vez que
   se usa en un proyecto hace onboarding para registrar sus componentes.
   Trigger: cuando el usuario diga "crear-rn", "generar release note", "armar RN",
@@ -100,9 +100,14 @@ Proponer por defecto (desde `references/known-components.md`): nota de "no requi
 ### 9. Variables de Entorno (auto-fetch desde git)
 Para cada componente incluido en el paso 8 que tenga un repo de configuración/infra asociado:
 1. Localizar ese repo en el directorio local de repos del usuario, buscando carpetas cuyo nombre tokenizado se parezca al del servicio (ej. patrón `*-infra`, `*-config`, u otro que use el equipo — preguntarle al usuario el patrón si no es evidente).
-2. Dentro del repo, revisar `git log --since="40 days ago" --oneline` sobre los archivos de configuración de QA, y el diff de esos commits (`git log -p --since="40 days ago" -- <ruta-config-qa>`) para detectar líneas agregadas (`+`) que introduzcan nuevas variables de entorno.
-3. Listar las variables nuevas encontradas, SIN su valor (columna Valor vacía).
-4. Si no se encuentra el repo o no hay variables nuevas, omitir la tabla e indicarlo explícitamente.
+2. Dentro del repo, revisar `git log --since="6 weeks ago" --oneline` sobre los archivos de configuración de QA, y el diff de esos commits (`git log -p --since="6 weeks ago" -- <ruta-config-qa>`) para detectar líneas agregadas (`+`) que introduzcan nuevas variables de entorno.
+3. Contrastar contra la tabla "✅ Variables de Entorno" del RN anterior (el mismo documento ya localizado y leído en el paso 8.2): si alguna variable detectada en el diff ya figura ahí, es candidata a falso positivo (puede haber quedado dentro de la ventana de 6 semanas sin ser realmente nueva para este release). Marcarla como tal en vez de descartarla en silencio.
+4. Mostrarle al usuario la lista completa de variables detectadas (nombre de variable, servicio), señalando explícitamente cuáles ya aparecían en el RN anterior, y pedirle que autorice cuáles quedan afuera y cuáles se incluyen igual. No dar la lista por definitiva hasta la confirmación.
+5. Para cada variable confirmada, resolver su **Valor**:
+   - Si es booleana (`true`/`false`, o equivalentes claros como `1`/`0`, `yes`/`no` usados como flag), tomar el valor introducido en el propio diff del paso 2 (la línea `+` agregada).
+   - Si no es booleana, no usar el valor del diff: leer el valor **actual** del archivo de configuración de QA en el repo de infra (no el histórico del commit) y usar ese.
+6. Mostrarle al usuario la tabla resultante (variable, servicio, valor) para confirmación final antes de darla por definitiva.
+7. Si no se encuentra el repo o no hay variables nuevas, omitir la tabla e indicarlo explícitamente.
 
 ### 10. Reporte de pruebas
 Preguntar los valores de "Resultado Release" para: casos de prueba ejecutados, exitosos vs. fallados, defectos/vulnerabilidades bloqueantes, defectos/vulnerabilidades high, resultado final.

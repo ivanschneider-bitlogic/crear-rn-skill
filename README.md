@@ -10,7 +10,7 @@ Skill de Claude Code para generar Release Notes siguiendo siempre la misma plant
 | MCP de Google Drive (`mcp__claude_ai_Google_Drive__*`) | Buscar/leer el RN de la versión anterior y crear el Google Doc final | Sí — sin esto la skill no puede crear el documento |
 | MCP de Linear (`mcp__plugin_linear_linear__*`) | Autocompletar la sección "Alcance" (milestone) y "Problemas Resueltos" (bugs) | No — si falta, se pregunta manualmente |
 | AWS CLI configurado con acceso al cluster ECS de QA | Resolver en vivo la versión de los componentes que corren en ECS | No — si falta, se pregunta la versión manualmente |
-| Git y acceso local a los repos de configuración/infra | Detectar variables de entorno nuevas en los últimos 40 días | No — si falta, se omite esa sección |
+| Git y acceso local a los repos de configuración/infra | Detectar variables de entorno nuevas en las últimas 6 semanas, contrastando contra el RN anterior para filtrar falsos positivos | No — si falta, se omite esa sección |
 
 Ninguno de los tres últimos es bloqueante: si el MCP o la herramienta no está disponible, la skill simplemente le pide el dato al usuario en vez de autocompletarlo.
 
