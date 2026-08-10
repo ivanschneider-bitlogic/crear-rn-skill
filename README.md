@@ -32,8 +32,6 @@ Copiar `crear-rn-skill/universal/crear-rn-prompt.md` a la carpeta de reglas de t
 |---|---|
 | Cursor | `.cursor/rules/crear-rn.mdc` |
 | Windsurf | `.windsurf/rules/crear-rn.md` |
-| Cline | `.clinerules/crear-rn.md` |
-| Continue.dev | `.continue/rules/crear-rn.md` |
 
 Si tu cliente usa un único archivo de reglas (ej. `.windsurfrules` o `.cursorrules` en versiones antiguas), pegar el contenido al final de ese archivo en vez de crear uno nuevo.
 
