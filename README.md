@@ -14,6 +14,39 @@ Skill de Claude Code para generar Release Notes siguiendo siempre la misma plant
 
 Ninguno de los tres últimos es bloqueante: si el MCP o la herramienta no está disponible, la skill simplemente le pide el dato al usuario en vez de autocompletarlo.
 
+## Uso con Cursor, Windsurf u otros clientes MCP
+
+Este repo está pensado para Claude Code (formato de skill), pero la lógica es portable a cualquier editor con soporte MCP: Cursor, Windsurf, Cline, Continue.dev, Cody, etc. `universal/crear-rn-prompt.md` es el mismo flujo en un prompt Markdown plano, sin el formato de skill específico de Claude Code.
+
+Requisitos: los mismos MCP de la tabla de arriba, pero conectados en tu propio cliente (no en Claude Code). Los nombres exactos de las herramientas MCP varían según cómo cada cliente los expone — el prompt universal describe la acción a realizar, no el nombre literal de la función.
+
+### Instalación como regla de proyecto
+
+```bash
+git clone https://github.com/ivanschneider-bitlogic/crear-rn-skill.git
+```
+
+Copiar `crear-rn-skill/universal/crear-rn-prompt.md` a la carpeta de reglas de tu cliente:
+
+| Cliente | Ruta de reglas |
+|---|---|
+| Cursor | `.cursor/rules/crear-rn.mdc` |
+| Windsurf | `.windsurf/rules/crear-rn.md` |
+| Cline | `.clinerules/crear-rn.md` |
+| Continue.dev | `.continue/rules/crear-rn.md` |
+
+Si tu cliente usa un único archivo de reglas (ej. `.windsurfrules` o `.cursorrules` en versiones antiguas), pegar el contenido al final de ese archivo en vez de crear uno nuevo.
+
+Verificar en la configuración del cliente que la regla quedó activa para el proyecto.
+
+### Instalación en clientes sin reglas de proyecto
+
+Pegar el contenido de `universal/crear-rn-prompt.md` directamente al inicio del chat (como instrucción de sistema o primer mensaje) antes de pedir el release note.
+
+### Cómo se usa
+
+Con la regla o el prompt cargado, pedir directamente "generá el release note de `<proyecto>`" (o equivalente). Guía la conversación sección por sección igual que la skill de Claude Code.
+
 ## Instalación
 
 ### Opción A — como plugin vía marketplace (recomendado)
