@@ -14,9 +14,9 @@ Skill de Claude Code para generar Release Notes siguiendo siempre la misma plant
 
 Ninguno de los tres últimos es bloqueante: si el MCP o la herramienta no está disponible, la skill simplemente le pide el dato al usuario en vez de autocompletarlo.
 
-## Uso con Cursor, Windsurf u otros clientes MCP
+## Uso con Cursor, Windsurf u otras IAs.
 
-Este repo está pensado para Claude Code (formato de skill), pero la lógica es portable a cualquier editor con soporte MCP: Cursor, Windsurf, Cline, Continue.dev, Cody, etc. `universal/crear-rn-prompt.md` es el mismo flujo en un prompt Markdown plano, sin el formato de skill específico de Claude Code.
+Este repo está pensado para Claude Code (formato de skill), pero la lógica es portable a cualquier editor con soporte MCP: Cursor, Windsurf, etc. `universal/crear-rn-prompt.md` es el mismo flujo en un prompt Markdown plano, sin el formato de skill específico de Claude Code.
 
 Requisitos: los mismos MCP de la tabla de arriba, pero conectados en tu propio cliente (no en Claude Code). Los nombres exactos de las herramientas MCP varían según cómo cada cliente los expone — el prompt universal describe la acción a realizar, no el nombre literal de la función.
 
